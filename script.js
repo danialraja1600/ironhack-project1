@@ -25,7 +25,7 @@ var redSquare = {
 
 // Set the initial score to zero
 var score = 5;
-var life = 3;
+var life = 3; 
 var lifeScore = 0;
 
 // Draw the player on the canvas
@@ -53,11 +53,14 @@ function movePlayer(event) {
   } else if (event.keyCode == 39) { // right arrow key
     player.x += player.speed;
   } else if (event.keyCode == 32) { // spacebar key
-    fire.isFired = true;
-    fire.x = player.x + 20;
-    fire.y = player.y - 10;
-  }
+    context.fillStyle = "green";
+    context.fillRect(greenSquare.x, greenSquare.y, 20,20);
 }
+
+
+
+
+
 
 // Move the blueSquare
 function moveblueSquare() {
@@ -76,6 +79,8 @@ function moveblueSquare() {
     score -= 1;
   }
 }
+
+
 
 
 // Move the redSquare
@@ -119,7 +124,6 @@ function checkCollision() {
     exitCode();
   }
 }
-
 // Check if the player and redSquare collide
 function checkCollision2() {
   if (player.x < redSquare.x + 50 && player.x + 50 > redSquare.x && player.y < redSquare.y + 20 && player.y + 20 > redSquare.y) {
@@ -178,12 +182,16 @@ function gainLife() {
 
 
 
+
+
 // Game loop
 function gameLoop() {
   // Clear the canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
   // Move the player
   window.addEventListener("keydown", movePlayer);
+
+  //
 
   // Move the blueSquare
   moveblueSquare();
@@ -208,3 +216,4 @@ function gameLoop() {
 
 // Start the game loop
 gameLoop();
+}

@@ -2,8 +2,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f1f1f1;
-  font-family: Arial, sans-serif;
-  background-image: url(bg-1.jpg);
+  font-family: "Century Gothic", Arial, sans-serif;
+  background-image: url(bg-4.gif);
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
@@ -22,9 +22,9 @@ h3 {
 
 button {
   padding: 10px 20px;
-  background-color: #d9534f;
+  background-color: red;
   color: white;
-  border: none;
+  border: 3px solid red;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
@@ -32,7 +32,10 @@ button {
 }
 
 button:hover {
-  background-color: red;
+  background-color: #faeae8;
+  border:  3px solid red;
+  color: black;
+  box-sizing: border-box;
 }
 
 #canvasDiv
@@ -46,12 +49,11 @@ button:hover {
 canvas {
   display: block;
   margin: 0 auto;
-  border: 1px solid #ccc;
   box-shadow: 2px 2px 5px #aaa;
-  background-color: white;
+  background-color: #faeae8;
   text-align: center;
   margin-left: 60px;
-  border: 5px dashed red;
+  border: 10px inset red;
 }
 
 #gameOver
