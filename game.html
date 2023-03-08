@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="topDiv">
+      <h1 id="mainHeading">Catch the Blue Square</h1>
+      <button onclick="window.location.reload();">Restart</button><br><br>
+      <h3 id="gameOver">Game Over</h3>
+      <h4 id="score">Score: </h3>
+    </div>
+
+    <audio id="lose-life">
+      <source src="lose-life.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="game-over">
+      <source src="game-over.wav" type="audio/wav">
+    </audio>
+
+    <audio id="score-square">
+      <source src="score.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="gain-life">
+      <source src="gain-life.wav" type="audio/wav">
+    </audio>
+    
+    <div id="canvasDiv">
+      <canvas id="canvas" width="400" height="400"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
