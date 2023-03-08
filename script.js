@@ -50,12 +50,12 @@ function drawredSquare() {
 function movePlayer(event) {
   if (event.keyCode == 37) { // left arrow key
     player.x -= player.speed;
-  } else if (event.keyCode == 38) { // up arrow key
-    player.y -= player.speed;
   } else if (event.keyCode == 39) { // right arrow key
     player.x += player.speed;
-  } else if (event.keyCode == 40) { // down arrow key
-    player.y += player.speed;
+  } else if (event.keyCode == 32) { // spacebar key
+    fire.isFired = true;
+    fire.x = player.x + 20;
+    fire.y = player.y - 10;
   }
 }
 
@@ -68,7 +68,7 @@ function moveblueSquare() {
   } else {
     blueSquare.y += blueSquare.speed;
   }
-  
+
   // If the blueSquare goes out of bounds, reset its position
   if (blueSquare.x < 0 || blueSquare.x > canvas.width - 20 || blueSquare.y < 0 || blueSquare.y > canvas.height - 20) {
     blueSquare.x = Math.floor(Math.random() * (canvas.width - 20));
@@ -87,7 +87,7 @@ function moveredSquare() {
   } else {
     redSquare.y += redSquare.speed;
   }
-  
+
   // If the redSquare goes out of bounds, reset its position
   if (redSquare.x < 0 || redSquare.x > canvas.width - 20 || redSquare.y < 0 || redSquare.y > canvas.height - 20) {
     redSquare.x = Math.floor(Math.random() * (canvas.width - 20));
@@ -102,8 +102,7 @@ function checkCollision() {
     score += 1;
     lifeScore += 1;
     scoreSquare();
-    if(lifeScore == 10)
-    {
+    if (lifeScore == 10) {
       lifeScore = 0;
       life += 1;
       gainLife();
@@ -111,8 +110,7 @@ function checkCollision() {
     blueSquare.x = Math.floor(Math.random() * (canvas.width - 20));
     blueSquare.y = 4;
   }
-  if(score <= 0)
-  {
+  if (score <= 0) {
     document.getElementById("gameOver").style.display = "block";
     document.getElementById("score").style.display = "block";
     document.getElementById("score").innerHTML = "Score: " + score;
@@ -130,8 +128,7 @@ function checkCollision2() {
     redSquare.x = Math.floor(Math.random() * (canvas.width - 20));
     redSquare.y = 4;
   }
-  if(life <= 0)
-  {
+  if (life <= 0) {
     document.getElementById("gameOver").style.display = "block";
     document.getElementById("score").style.display = "block";
     document.getElementById("score").innerHTML = "Score: " + score;
@@ -183,29 +180,31 @@ function gainLife() {
 
 // Game loop
 function gameLoop() {
-// Clear the canvas
-context.clearRect(0, 0, canvas.width, canvas.height);
-// Move the player
-window.addEventListener("keydown", movePlayer);
+  // Clear the canvas
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  // Move the player
+  window.addEventListener("keydown", movePlayer);
 
-// Move the blueSquare
-moveblueSquare();
-moveredSquare();
+  // Move the blueSquare
+  moveblueSquare();
+  moveredSquare();
 
-// Check for collisions
-checkCollision();
-checkCollision2();
+  // Check for collisions
+  checkCollision();
+  checkCollision2();
 
-// Draw the player, blueSquare, redSquare, life and score
-drawPlayer();
-drawblueSquare();
-drawredSquare();
-drawScore();
-drawLife();
+  // Draw the player, blueSquare, redSquare, life and score
+  drawPlayer();
+  drawblueSquare();
+  drawredSquare();
+  drawScore();
+  drawLife();
 
-// Call gameLoop again after 20 milliseconds
-setTimeout(gameLoop, 20);
+  // Call gameLoop again after 20 milliseconds
+  setTimeout(gameLoop, 20);
+
 }
+
 
 // Start the game loop
 gameLoop();
