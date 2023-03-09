@@ -9,6 +9,12 @@ body {
   color: white;
 }
 
+#firstPage {
+  text-align:center;
+  font-size: 50px;
+
+}
+
 h1 {
   font-size: 36px;
   margin-top: 40px;
