@@ -9,12 +9,6 @@ body {
   color: white;
 }
 
-#firstPage {
-  text-align:center;
-  font-size: 50px;
-
-}
-
 h1 {
   font-size: 36px;
   margin-top: 40px;
@@ -26,7 +20,7 @@ h3 {
   margin-top: 20px;
 }
 
-button {
+.button {
   padding: 10px 20px;
   background-color: red;
   color: white;
@@ -35,9 +29,10 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin-bottom: 20px;
+  text-decoration: none;
 }
 
-button:hover {
+.button:hover {
   background-color: #faeae8;
   border:  3px solid red;
   color: black;
@@ -73,13 +68,19 @@ canvas {
   display:none;
 }
 
-#topDiv
+.topDiv
 {
   margin-left: 50px; 
   text-align: center;
+  font-size: 25px;
 }
 
 #mainHeading
 {
   color:white;
+}
+
+ul li 
+{
+  list-style-type: none;
 }

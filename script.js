@@ -46,7 +46,7 @@ var redSquare2 = {
 var yellowSquare = {
   x: 370,
   y: 100,
-  speed: 2
+  speed: 3
 };
 
 
@@ -73,7 +73,7 @@ var lifeScore = 0;
 // Draw the player on the canvas with black color
 function drawPlayer() {
   context.fillStyle = "black";
-  context.fillRect(player.x, player.y, 50, 20);  // 50 is the player's width and 20 is the player's height
+  context.fillRect(player.x, player.y, 70, 30);  // 50 is the player's width and 20 is the player's height
 }
 
 // Draw the blueSquare on the canvas with blue color
@@ -299,8 +299,6 @@ function checkCollision4() {
   // 50 is used because player's widht is 50
   // 20 is used because player's height is 20
   if (player.x < yellowSquare.x + 50 && player.x + 50 > yellowSquare.x && player.y < yellowSquare.y + 20 && player.y + 20 > yellowSquare.y) {
-    life -= 1;
-    loseLife();
     yellowSquare.x = Math.floor(Math.random() * (canvas.width - 20)); // new value of yellowSquare on x-axis
     yellowSquare.y = 4; // new value of yellowSquare on x-axis
   }
@@ -333,6 +331,14 @@ function fireCollision() {
   {
     redSquare2.x = 400; // it send the redsquare out of canvas element, it means it disappeared.
     life += 1;
+    bomb();
+    return;
+  }
+
+  if (yellowSquare.x < fire.x + 20 && yellowSquare.x + 20 > fire.x && yellowSquare.y < fire.y + 20 && yellowSquare.y + 20 > fire.y) 
+  {
+    yellowSquare.x = 400; 
+    score += 3;
     bomb();
     return;
   }
