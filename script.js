@@ -267,12 +267,14 @@ function fireCollision() {
   if (redSquare.x < fire.x + 20 && redSquare.x + 20 > fire.x && redSquare.y < fire.y + 20 && redSquare.y + 20 > fire.y) 
   {
     redSquare.x = 400; // it send the redsquare out of canvas element, it means it disappeared.
+    life += 1;
     bomb();
     return;
   }
   if (redSquare2.x < fire.x + 20 && redSquare2.x + 20 > fire.x && redSquare2.y < fire.y + 20 && redSquare2.y + 20 > fire.y) 
   {
     redSquare2.x = 400; // it send the redsquare out of canvas element, it means it disappeared.
+    life += 1;
     bomb();
     return;
   }
