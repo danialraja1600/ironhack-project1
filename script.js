@@ -43,6 +43,13 @@ var redSquare2 = {
 };
 
 
+var yellowSquare = {
+  x: 370,
+  y: 100,
+  speed: 2
+};
+
+
 // Set the initial position and speed of the fire
 // initial position of fire on x-axis
 // initial position of fire on y-axis
@@ -85,6 +92,12 @@ function drawredSquare() {
 function drawredSquare2() {
   context.fillStyle = "red";
   context.fillRect(redSquare2.x, redSquare2.y, 20, 20); // 20 is the redSquare's width and 20 is the redSquare's height
+}
+
+// Draw the yellow square on the canvas with red color
+function drawYellowSquare() {
+  context.fillStyle = "yellow";
+  context.fillRect(yellowSquare.x, yellowSquare.y, 20, 20); // 20 is the redSquare's width and 20 is the redSquare's height
 }
 
 // Draw the fire on the canvas with green color (this function only works when isFired value is set to true)
@@ -172,6 +185,26 @@ function moveredSquare2() {
 
 }
 
+
+// Move the yellowSquare in y-axis (downwards)
+function moveYellowSquare() {
+  // Randomly change the yellowSquare's direction
+  // this select a random number between 0-19, we can replace 20 to any other number (5, 4, 12)
+  var randomNum = Math.floor(Math.random() * 20);
+  if (randomNum == 0) {
+    yellowSquare.x -= yellowSquare.speed; // if random number is 0 then yellowSquare speed value is decrement from x-axis value of red square, and the result is stored in x-axis value of yellowSquare (that is how yellowSquare is moved in left direction only a little, because random number 0 is generated very few times)
+  } else {
+    yellowSquare.y += yellowSquare.speed; // if random number is not 0 then yellowSquare speed value is incremented from y-axis value of red square, and the result is stored in y-axis value of yellowSquare (that is how yellowSquare is moved in bottom direction
+  }
+  
+  // If the yellowSquare goes out of bounds, reset its position
+  if (yellowSquare.x < 0 || yellowSquare.x > canvas.width - 20 || yellowSquare.y < 0 || yellowSquare.y > canvas.height - 20) {
+    yellowSquare.x = Math.floor(Math.random() * (canvas.width - 20)); // new value of yellowSquare in x-axis
+    yellowSquare.y = 4; // new value of red square in y-axis
+  }
+
+}
+
 // Check if the player and blueSquare collide, if they collide then
 // plus 1 to score variable
 // plus 1 to lifeScore variable
@@ -245,6 +278,31 @@ function checkCollision3() {
     loseLife();
     redSquare2.x = Math.floor(Math.random() * (canvas.width - 20)); // new value of redSquare on x-axis
     redSquare2.y = 4; // new value of redSquare on x-axis
+  }
+  // if life value is 0 then show game over and calls exitCode function
+  if(life <= 0)
+  {
+    document.getElementById("gameOver").style.display = "block";
+    document.getElementById("score").style.display = "block";
+    document.getElementById("score").innerHTML = "Score: " + score;
+    gameOver();
+    exitCode();
+  }
+}
+
+// Check if the player and redSquare2 collide, if they collide then
+// minus 1 to life variable
+function checkCollision4() {
+
+  // all x values of player and yellowSquare is compared here
+  // all y values of player and yellowSquare compared here
+  // 50 is used because player's widht is 50
+  // 20 is used because player's height is 20
+  if (player.x < yellowSquare.x + 50 && player.x + 50 > yellowSquare.x && player.y < yellowSquare.y + 20 && player.y + 20 > yellowSquare.y) {
+    life -= 1;
+    loseLife();
+    yellowSquare.x = Math.floor(Math.random() * (canvas.width - 20)); // new value of yellowSquare on x-axis
+    yellowSquare.y = 4; // new value of yellowSquare on x-axis
   }
   // if life value is 0 then show game over and calls exitCode function
   if(life <= 0)
@@ -342,14 +400,16 @@ function gameLoop() {
   window.addEventListener("keydown", movePlayer);
 
   moveblueSquare(); // Move the blueSquare
-  moveredSquare();
-  moveredSquare2(); // Move the redSquare
+  moveredSquare(); // Move the redSquare
+  moveredSquare2(); // Move the redSquare2
+  moveYellowSquare(); // Move the yellowSquare
   moveFire(); // Move the fire
 
   // Check for collisions
   checkCollision();
   checkCollision2();
   checkCollision3();
+  checkCollision4();
   fireCollision();
 
   // Draw the player, blueSquare, redSquare, fire, life and score
@@ -357,6 +417,7 @@ function gameLoop() {
   drawblueSquare();
   drawredSquare();
   drawredSquare2();
+  drawYellowSquare();
   drawFire();
   drawScore();
   drawLife();
